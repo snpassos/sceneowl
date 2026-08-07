@@ -1,0 +1,213 @@
+<!--
+  Fonte: src/locales/{pt-BR,en-US}.ts (legal.privacy). Copiado à mão porque esta página é
+  estática (GitHub Pages) e o app é TypeScript — ao editar o texto da política dentro do app,
+  espelhar a mudança aqui também, ou os dois ficam divergentes.
+-->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SceneOwl — Política de Privacidade / Privacy Policy</title>
+<meta name="description" content="Política de Privacidade do SceneOwl" />
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0D0F14;
+    --fg: #F5F6F8;
+    --muted: #9AA0AC;
+    --primary: #6D4AFF;
+    --accent: #FFB547;
+    --border: #1E212B;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  header {
+    padding: 32px 20px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .brand-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+  .updated {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .lang-toggle {
+    display: inline-flex;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .lang-toggle button {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] {
+    background: var(--primary);
+    color: var(--fg);
+    border-color: var(--primary);
+  }
+  main {
+    padding: 24px 20px 64px;
+  }
+  section + section {
+    margin-top: 22px;
+  }
+  h2 {
+    font-size: 15px;
+    margin: 0 0 6px;
+    color: var(--fg);
+  }
+  p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  a { color: var(--accent); }
+  [data-lang-content][hidden] { display: none; }
+  footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand"><span class="brand-dot"></span> SceneOwl</div>
+      <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang-btn="pt-BR" aria-pressed="true">Português</button>
+        <button type="button" data-lang-btn="en-US" aria-pressed="false">English</button>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <div data-lang-content="pt-BR">
+      <p class="updated">Última atualização: 7 de agosto de 2026</p>
+
+      <section>
+        <h2>1. Quais dados coletamos</h2>
+        <p>Para criar e manter sua conta, coletamos seu e-mail e senha (armazenada de forma segura pelo Supabase Auth, nunca em texto plano), nome de exibição, username e foto de perfil (avatar). Também guardamos os dados que você gera usando o app: filmes e séries marcados como assistidos, episódios assistidos e quando, notas, comentários e reações, sua watchlist e as conexões de quem você segue e quem te segue. Se você ativar as notificações, guardamos também um identificador de notificação do seu dispositivo (push token), usado apenas para entregar os avisos do app.</p>
+      </section>
+      <section>
+        <h2>2. Por que coletamos esses dados</h2>
+        <p>Usamos esses dados para operar sua conta, personalizar sua experiência (como estatísticas de filmes/séries assistidos) e permitir os recursos sociais do app, como perfil público, seguir outras pessoas e comentar.</p>
+      </section>
+      <section>
+        <h2>3. Como armazenamos seus dados</h2>
+        <p>Seus dados ficam em um banco de dados PostgreSQL hospedado pelo Supabase, com controle de acesso por linha (Row Level Security) que restringe cada usuário aos seus próprios dados privados. Sua foto de perfil fica no Supabase Storage. Alguns conteúdos são públicos por natureza e ficam visíveis para outras pessoas do app: seu perfil (nome, username e avatar), seus comentários e suas reações a comentários. Já sua watchlist, o que você assistiu e suas notas seguem a configuração de privacidade do seu perfil — se ele estiver marcado como privado, só quem você aprovar consegue ver. Não vendemos nem compartilhamos seus dados com terceiros para fins de marketing.</p>
+      </section>
+      <section>
+        <h2>4. Cookies</h2>
+        <p>O SceneOwl não usa cookies de rastreamento. Sua sessão fica salva em armazenamento local do próprio dispositivo, não em cookies.</p>
+      </section>
+      <section>
+        <h2>5. Anúncios</h2>
+        <p>Hoje o SceneOwl não exibe anúncios. Se isso mudar no futuro, esta política será atualizada antes da ativação, descrevendo qual rede de anúncios é usada, quais dados são compartilhados com ela e como desativar ou optar por não participar, quando a rede oferecer essa opção.</p>
+      </section>
+      <section>
+        <h2>6. Analytics</h2>
+        <p>Em breve o app vai coletar dados agregados de uso (quais telas e recursos são mais usados) para orientar melhorias, através de uma ferramenta de analytics ainda a ser escolhida. Nenhum dado de analytics é vendido a terceiros. Esta seção será atualizada com o nome da ferramenta assim que for implementada.</p>
+      </section>
+      <section>
+        <h2>7. Como excluir sua conta</h2>
+        <p>A qualquer momento, em Configurações → Excluir conta. A exclusão é permanente e apaga todos os dados listados na seção 1.</p>
+      </section>
+      <section>
+        <h2>8. Serviços de terceiros</h2>
+        <p>Alguns recursos do app conversam diretamente com serviços de terceiros a partir do seu dispositivo, o que significa que esses serviços recebem seu endereço IP e o conteúdo da requisição. São eles: o TMDB (The Movie Database), que fornece o catálogo de filmes e séries e recebe os termos que você busca; o Giphy, usado para escolher GIFs em comentários, que recebe o termo que você digita na busca de GIFs e o idioma do app; e a Expo, que opera o serviço de entrega das notificações push e recebe o identificador de notificação do seu dispositivo junto do texto do aviso. Nenhum desses serviços recebe seu e-mail, sua senha ou o conteúdo dos seus comentários e notas.</p>
+      </section>
+      <section>
+        <h2>9. Contato</h2>
+        <p>Dúvidas sobre esta política podem ser enviadas para <a href="mailto:contato.sceneowl@gmail.com">contato.sceneowl@gmail.com</a>.</p>
+      </section>
+    </div>
+
+    <div data-lang-content="en-US" hidden>
+      <p class="updated">Last updated: August 7, 2026</p>
+
+      <section>
+        <h2>1. What data we collect</h2>
+        <p>To create and maintain your account, we collect your email and password (stored securely by Supabase Auth, never in plain text), display name, username, and profile photo (avatar). We also store the data you generate using the app: movies and TV shows marked as watched, watched episodes and when, ratings, comments and reactions, your watchlist, and your follow/follower connections. If you enable notifications, we also store a push notification identifier for your device (push token), used only to deliver the app's alerts.</p>
+      </section>
+      <section>
+        <h2>2. Why we collect this data</h2>
+        <p>We use this data to operate your account, personalize your experience (such as watched movie/show statistics), and enable the app's social features, like a public profile, following other people, and commenting.</p>
+      </section>
+      <section>
+        <h2>3. How we store your data</h2>
+        <p>Your data is stored in a PostgreSQL database hosted by Supabase, with Row Level Security restricting each user to their own private data. Your profile photo is stored in Supabase Storage. Some content is public by nature and visible to other people in the app: your profile (name, username and avatar), your comments and your reactions to comments. Your watchlist, what you have watched and your ratings follow your profile's privacy setting — if it is marked as private, only people you approve can see them. We do not sell or share your data with third parties for marketing purposes.</p>
+      </section>
+      <section>
+        <h2>4. Cookies</h2>
+        <p>SceneOwl does not use tracking cookies. Your session is saved in the device's own local storage, not in cookies.</p>
+      </section>
+      <section>
+        <h2>5. Ads</h2>
+        <p>SceneOwl currently does not display ads. If this changes in the future, this policy will be updated before activation, describing which ad network is used, what data is shared with it, and how to disable or opt out, when the network offers that option.</p>
+      </section>
+      <section>
+        <h2>6. Analytics</h2>
+        <p>Soon the app will collect aggregated usage data (which screens and features are used most) to guide improvements, through an analytics tool yet to be chosen. No analytics data is sold to third parties. This section will be updated with the tool's name once it's implemented.</p>
+      </section>
+      <section>
+        <h2>7. How to delete your account</h2>
+        <p>At any time, in Settings → Delete account. Deletion is permanent and erases all data listed in section 1.</p>
+      </section>
+      <section>
+        <h2>8. Third-party services</h2>
+        <p>Some features talk directly to third-party services from your device, which means those services receive your IP address and the content of the request. They are: TMDB (The Movie Database), which provides the movie and series catalog and receives the terms you search for; Giphy, used to pick GIFs in comments, which receives the term you type in the GIF search and the app's language; and Expo, which operates the push notification delivery service and receives your device's notification identifier along with the alert text. None of these services receives your email, your password, or the content of your comments and ratings.</p>
+      </section>
+      <section>
+        <h2>9. Contact</h2>
+        <p>Questions about this policy can be sent to <a href="mailto:contato.sceneowl@gmail.com">contato.sceneowl@gmail.com</a>.</p>
+      </section>
+    </div>
+  </main>
+  <footer>SceneOwl</footer>
+  <script>
+    var buttons = document.querySelectorAll('[data-lang-btn]');
+    var contents = document.querySelectorAll('[data-lang-content]');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var lang = btn.getAttribute('data-lang-btn');
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+        contents.forEach(function (c) {
+          var match = c.getAttribute('data-lang-content') === lang;
+          if (match) { c.removeAttribute('hidden'); } else { c.setAttribute('hidden', ''); }
+        });
+        document.documentElement.lang = lang;
+      });
+    });
+  </script>
+</body>
+</html>
