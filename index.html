@@ -49,8 +49,28 @@
   p {
     color: var(--muted);
     font-size: 15px;
-    margin: 0 0 30px;
+    margin: 0 0 22px;
   }
+  .lang-toggle {
+    display: inline-flex;
+    gap: 6px;
+    margin-bottom: 22px;
+  }
+  .lang-toggle button {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] {
+    background: var(--primary);
+    color: var(--fg);
+    border-color: var(--primary);
+  }
+  [data-lang-content][hidden] { display: none; }
   .links {
     display: inline-flex;
     gap: 10px;
@@ -73,11 +93,42 @@
   <div class="wrap">
     <img class="logo" src="./logo.png" alt="SceneOwl" width="230" height="240" />
     <div class="wordmark"><span class="scene">Scene</span><span class="owl">Owl</span></div>
-    <p>Cada cena. Lembrada.<br />Acompanhe filmes e séries, monte sua watchlist e conecte-se com outras pessoas.</p>
-    <div class="links">
-      <a class="link" href="./privacy-policy.html">Política de Privacidade</a>
-      <a class="link" href="./terms-of-service.html">Termos de Uso</a>
+
+    <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang-btn="pt-BR" aria-pressed="true">Português</button>
+      <button type="button" data-lang-btn="en-US" aria-pressed="false">English</button>
+    </div>
+
+    <div data-lang-content="pt-BR">
+      <p>Cada cena. Lembrada.<br />Acompanhe filmes e séries, monte sua watchlist e conecte-se com outras pessoas.</p>
+      <div class="links">
+        <a class="link" href="./privacy-policy.html">Política de Privacidade</a>
+        <a class="link" href="./terms-of-service.html">Termos de Uso</a>
+      </div>
+    </div>
+
+    <div data-lang-content="en-US" hidden>
+      <p>Every scene. Remembered.<br />Track movies and TV shows, build your watchlist, and connect with other people.</p>
+      <div class="links">
+        <a class="link" href="./privacy-policy.html">Privacy Policy</a>
+        <a class="link" href="./terms-of-service.html">Terms of Use</a>
+      </div>
     </div>
   </div>
+  <script>
+    var buttons = document.querySelectorAll('[data-lang-btn]');
+    var contents = document.querySelectorAll('[data-lang-content]');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var lang = btn.getAttribute('data-lang-btn');
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+        contents.forEach(function (c) {
+          var match = c.getAttribute('data-lang-content') === lang;
+          if (match) { c.removeAttribute('hidden'); } else { c.setAttribute('hidden', ''); }
+        });
+        document.documentElement.lang = lang;
+      });
+    });
+  </script>
 </body>
 </html>
