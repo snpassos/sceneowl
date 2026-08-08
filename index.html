@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SceneOwl</title>
+<meta name="description" content="SceneOwl — acompanhe filmes e séries, monte sua watchlist e conecte-se com outras pessoas." />
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0D0F14;
+    --fg: #F5F6F8;
+    --muted: #9AA0AC;
+    --primary: #6D4AFF;
+    --accent: #FFB547;
+    --border: #1E212B;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .wrap {
+    max-width: 480px;
+    text-align: center;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .brand-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+  p {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0 0 28px;
+  }
+  .links {
+    display: inline-flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  a.link {
+    color: var(--fg);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 13px;
+  }
+  a.link:hover { border-color: var(--primary); color: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand"><span class="brand-dot"></span> SceneOwl</div>
+    <p>Acompanhe filmes e séries, monte sua watchlist e conecte-se com outras pessoas.</p>
+    <div class="links">
+      <a class="link" href="./privacy-policy.html">Política de Privacidade</a>
+    </div>
+  </div>
+</body>
+</html>
