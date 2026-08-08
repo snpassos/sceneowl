@@ -129,6 +129,12 @@
       });
       document.documentElement.lang = lang;
     }
+    function applySavedLang() {
+      try {
+        var saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) applyLang(saved);
+      } catch (e) {}
+    }
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var lang = btn.getAttribute('data-lang-btn');
@@ -136,10 +142,12 @@
         try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
       });
     });
-    try {
-      var saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) applyLang(saved);
-    } catch (e) {}
+    applySavedLang();
+    // Restaurar do bfcache (ex.: botão Voltar do navegador) não reexecuta scripts inline --
+    // sem isso, a página fica presa no idioma de quando foi visitada pela primeira vez.
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) applySavedLang();
+    });
   </script>
 </body>
 </html>

@@ -42,6 +42,8 @@
     gap: 10px;
     font-weight: 700;
     font-size: 20px;
+    color: inherit;
+    text-decoration: none;
   }
   .brand-dot {
     width: 10px;
@@ -103,7 +105,7 @@
 <body>
   <header>
     <div class="wrap">
-      <div class="brand"><span class="brand-dot"></span> SceneOwl</div>
+      <a class="brand" href="./index.html"><span class="brand-dot"></span> SceneOwl</a>
       <div class="lang-toggle" role="group" aria-label="Idioma / Language">
         <button type="button" data-lang-btn="pt-BR" aria-pressed="true">Português</button>
         <button type="button" data-lang-btn="en-US" aria-pressed="false">English</button>
@@ -208,6 +210,12 @@
       });
       document.documentElement.lang = lang;
     }
+    function applySavedLang() {
+      try {
+        var saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) applyLang(saved);
+      } catch (e) {}
+    }
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var lang = btn.getAttribute('data-lang-btn');
@@ -215,10 +223,12 @@
         try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
       });
     });
-    try {
-      var saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) applyLang(saved);
-    } catch (e) {}
+    applySavedLang();
+    // Restaurar do bfcache (ex.: botão Voltar do navegador) não reexecuta scripts inline --
+    // sem isso, a página fica presa no idioma de quando foi visitada pela primeira vez.
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) applySavedLang();
+    });
   </script>
 </body>
 </html>
