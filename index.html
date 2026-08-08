@@ -116,19 +116,30 @@
     </div>
   </div>
   <script>
+    // localStorage compartilhado entre index/privacy-policy/terms-of-service (mesmo domínio
+    // GitHub Pages) -- escolher o idioma aqui mantém a escolha ao clicar nos links abaixo.
+    var STORAGE_KEY = 'sceneowl-lang';
     var buttons = document.querySelectorAll('[data-lang-btn]');
     var contents = document.querySelectorAll('[data-lang-content]');
+    function applyLang(lang) {
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-btn') === lang)); });
+      contents.forEach(function (c) {
+        var match = c.getAttribute('data-lang-content') === lang;
+        if (match) { c.removeAttribute('hidden'); } else { c.setAttribute('hidden', ''); }
+      });
+      document.documentElement.lang = lang;
+    }
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var lang = btn.getAttribute('data-lang-btn');
-        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
-        contents.forEach(function (c) {
-          var match = c.getAttribute('data-lang-content') === lang;
-          if (match) { c.removeAttribute('hidden'); } else { c.setAttribute('hidden', ''); }
-        });
-        document.documentElement.lang = lang;
+        applyLang(lang);
+        try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
       });
     });
+    try {
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) applyLang(saved);
+    } catch (e) {}
   </script>
 </body>
 </html>
