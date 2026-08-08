@@ -13,13 +13,13 @@
     --muted: #9AA0AC;
     --primary: #6D4AFF;
     --accent: #FFB547;
-    --border: #1E212B;
+    --border: rgba(245, 246, 248, 0.12);
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
     min-height: 100vh;
-    background: var(--bg);
+    background: radial-gradient(60% 50% at 50% 0%, #16181f 0%, var(--bg) 70%);
     color: var(--fg);
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
@@ -32,25 +32,24 @@
     max-width: 480px;
     text-align: center;
   }
-  .brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 28px;
-    margin-bottom: 12px;
+  .logo {
+    width: 92px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 8px 24px rgba(109, 74, 255, 0.35));
   }
-  .brand-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 999px;
-    background: var(--accent);
+  .wordmark {
+    font-weight: 800;
+    font-size: 34px;
+    letter-spacing: -0.5px;
+    margin-bottom: 14px;
   }
+  .wordmark .scene { color: var(--fg); }
+  .wordmark .owl { color: var(--primary); }
   p {
     color: var(--muted);
     font-size: 15px;
-    margin: 0 0 28px;
+    margin: 0 0 30px;
   }
   .links {
     display: inline-flex;
@@ -65,14 +64,16 @@
     border-radius: 999px;
     padding: 8px 18px;
     font-size: 13px;
+    transition: border-color 0.15s, color 0.15s;
   }
   a.link:hover { border-color: var(--primary); color: var(--accent); }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="brand"><span class="brand-dot"></span> SceneOwl</div>
-    <p>Acompanhe filmes e séries, monte sua watchlist e conecte-se com outras pessoas.</p>
+    <img class="logo" src="./logo.png" alt="SceneOwl" width="230" height="240" />
+    <div class="wordmark"><span class="scene">Scene</span><span class="owl">Owl</span></div>
+    <p>Cada cena. Lembrada.<br />Acompanhe filmes e séries, monte sua watchlist e conecte-se com outras pessoas.</p>
     <div class="links">
       <a class="link" href="./privacy-policy.html">Política de Privacidade</a>
       <a class="link" href="./terms-of-service.html">Termos de Uso</a>
