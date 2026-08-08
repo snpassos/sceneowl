@@ -4,7 +4,17 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SceneOwl</title>
-<meta name="description" content="SceneOwl — acompanhe filmes e séries, monte sua watchlist e conecte-se com outras pessoas." />
+<meta name="application-name" content="SceneOwl" />
+<meta property="og:site_name" content="SceneOwl" />
+<meta property="og:title" content="SceneOwl" />
+<meta name="description" content="SceneOwl is an app for tracking the movies and TV shows you watch: build a watchlist, rate and comment on titles, track episode-by-episode progress, and follow what your friends are watching." />
+<meta property="og:description" content="SceneOwl is an app for tracking the movies and TV shows you watch: build a watchlist, rate and comment on titles, track episode-by-episode progress, and follow what your friends are watching." />
+<!--
+  Verificação de propriedade do site (Google Search Console, exigida pela tela de consentimento
+  OAuth): colar aqui a meta tag exata fornecida pelo Search Console ao verificar
+  https://snpassos.github.io/sceneowl-legal/ pelo método "Tag HTML", ex.:
+  <meta name="google-site-verification" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+-->
 <style>
   :root {
     color-scheme: dark;
@@ -38,11 +48,11 @@
     margin-bottom: 20px;
     filter: drop-shadow(0 8px 24px rgba(109, 74, 255, 0.35));
   }
-  .wordmark {
+  h1.wordmark {
     font-weight: 800;
     font-size: 34px;
     letter-spacing: -0.5px;
-    margin-bottom: 14px;
+    margin: 0 0 14px;
   }
   .wordmark .scene { color: var(--fg); }
   .wordmark .owl { color: var(--primary); }
@@ -92,7 +102,7 @@
 <body>
   <div class="wrap">
     <img class="logo" src="./logo.png" alt="SceneOwl" width="230" height="240" />
-    <div class="wordmark"><span class="scene">Scene</span><span class="owl">Owl</span></div>
+    <h1 class="wordmark"><span class="scene">Scene</span><span class="owl">Owl</span></h1>
 
     <div class="lang-toggle" role="group" aria-label="Idioma / Language">
       <button type="button" data-lang-btn="pt-BR" aria-pressed="true">Português</button>
@@ -100,7 +110,11 @@
     </div>
 
     <div data-lang-content="pt-BR">
-      <p>Cada cena. Lembrada.<br />Acompanhe filmes e séries, monte sua watchlist e conecte-se com outras pessoas.</p>
+      <p>
+        <strong>SceneOwl</strong> é um app para acompanhar os filmes e séries que você assiste:
+        monte sua watchlist, avalie e comente títulos, acompanhe seu progresso episódio a
+        episódio e siga o que seus amigos estão assistindo.
+      </p>
       <div class="links">
         <a class="link" href="./privacy-policy.html">Política de Privacidade</a>
         <a class="link" href="./terms-of-service.html">Termos de Uso</a>
@@ -108,7 +122,11 @@
     </div>
 
     <div data-lang-content="en-US" hidden>
-      <p>Every scene. Remembered.<br />Track movies and TV shows, build your watchlist, and connect with other people.</p>
+      <p>
+        <strong>SceneOwl</strong> is an app for tracking the movies and TV shows you watch: build
+        a watchlist, rate and comment on titles, track your episode-by-episode progress, and
+        follow what your friends are watching.
+      </p>
       <div class="links">
         <a class="link" href="./privacy-policy.html">Privacy Policy</a>
         <a class="link" href="./terms-of-service.html">Terms of Use</a>
