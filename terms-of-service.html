@@ -1,0 +1,213 @@
+<!--
+  Fonte: src/locales/{pt-BR,en-US}.ts (legal.terms). Copiado à mão porque esta página é
+  estática (GitHub Pages) e o app é TypeScript — ao editar o texto dos termos dentro do app,
+  espelhar a mudança aqui também, ou os dois ficam divergentes.
+-->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SceneOwl — Termos de Uso / Terms of Use</title>
+<meta name="description" content="Termos de Uso do SceneOwl" />
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0D0F14;
+    --fg: #F5F6F8;
+    --muted: #9AA0AC;
+    --primary: #6D4AFF;
+    --accent: #FFB547;
+    --border: #1E212B;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  header {
+    padding: 32px 20px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .brand-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+  .updated {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .lang-toggle {
+    display: inline-flex;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .lang-toggle button {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] {
+    background: var(--primary);
+    color: var(--fg);
+    border-color: var(--primary);
+  }
+  main {
+    padding: 24px 20px 64px;
+  }
+  section + section {
+    margin-top: 22px;
+  }
+  h2 {
+    font-size: 15px;
+    margin: 0 0 6px;
+    color: var(--fg);
+  }
+  p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  a { color: var(--accent); }
+  [data-lang-content][hidden] { display: none; }
+  footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand"><span class="brand-dot"></span> SceneOwl</div>
+      <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang-btn="pt-BR" aria-pressed="true">Português</button>
+        <button type="button" data-lang-btn="en-US" aria-pressed="false">English</button>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <div data-lang-content="pt-BR">
+      <p class="updated">Última atualização: 18 de julho de 2026</p>
+
+      <section>
+        <h2>1. Sobre o SceneOwl</h2>
+        <p>O SceneOwl é um app de catálogo, avaliação e organização pessoal de filmes e séries — watchlist, notas, comentários e estatísticas de acompanhamento.</p>
+      </section>
+      <section>
+        <h2>2. Catálogo baseado em API de terceiros</h2>
+        <p>As informações de filmes e séries (sinopse, elenco, pôsteres, datas de lançamento) vêm da API do TMDB (The Movie Database) e podem conter imprecisões ou atrasos fora do nosso controle.</p>
+      </section>
+      <section>
+        <h2>3. O SceneOwl não transmite filmes nem séries</h2>
+        <p>O SceneOwl não hospeda, reproduz nem distribui vídeo de nenhuma obra — é uma ferramenta de catálogo e organização pessoal, não um serviço de streaming.</p>
+      </section>
+      <section>
+        <h2>4. Direitos autorais</h2>
+        <p>Todos os direitos sobre as obras (filmes, séries, imagens, sinopses) pertencem aos respectivos proprietários e estúdios. O uso desses metadados no SceneOwl segue os termos de uso da API do TMDB.</p>
+      </section>
+      <section>
+        <h2>5. Conteúdo gerado pelo usuário</h2>
+        <p>Comentários e notas publicados no app são de responsabilidade de quem os publica. O SceneOwl pode remover conteúdo que viole a lei ou estes Termos.</p>
+      </section>
+      <section>
+        <h2>6. Sua conta</h2>
+        <p>Você é responsável por manter a confidencialidade da sua senha e por toda atividade na sua conta. Contas destinadas a menores de 13 anos não são permitidas.</p>
+      </section>
+      <section>
+        <h2>7. Suspensão ou encerramento de conta</h2>
+        <p>Podemos suspender ou encerrar contas que violem estes Termos. Você também pode excluir sua própria conta a qualquer momento em Configurações → Excluir conta.</p>
+      </section>
+      <section>
+        <h2>8. Alterações nestes Termos</h2>
+        <p>Podemos atualizar estes Termos periodicamente. Mudanças relevantes serão comunicadas dentro do app.</p>
+      </section>
+      <section>
+        <h2>9. Lei aplicável</h2>
+        <p>Estes Termos são regidos pelas leis da República Federativa do Brasil.</p>
+      </section>
+    </div>
+
+    <div data-lang-content="en-US" hidden>
+      <p class="updated">Last updated: July 18, 2026</p>
+
+      <section>
+        <h2>1. About SceneOwl</h2>
+        <p>SceneOwl is a catalog, rating, and personal organization app for movies and TV shows — watchlist, ratings, comments, and tracking statistics.</p>
+      </section>
+      <section>
+        <h2>2. Catalog based on a third-party API</h2>
+        <p>Movie and TV show information (synopsis, cast, posters, release dates) comes from the TMDB (The Movie Database) API and may contain inaccuracies or delays outside our control.</p>
+      </section>
+      <section>
+        <h2>3. SceneOwl does not stream movies or TV shows</h2>
+        <p>SceneOwl does not host, play, or distribute video of any work — it is a catalog and personal organization tool, not a streaming service.</p>
+      </section>
+      <section>
+        <h2>4. Copyright</h2>
+        <p>All rights to the works (movies, TV shows, images, synopses) belong to their respective owners and studios. The use of this metadata in SceneOwl follows the TMDB API's terms of use.</p>
+      </section>
+      <section>
+        <h2>5. User-generated content</h2>
+        <p>Comments and ratings published in the app are the responsibility of whoever posts them. SceneOwl may remove content that violates the law or these Terms.</p>
+      </section>
+      <section>
+        <h2>6. Your account</h2>
+        <p>You are responsible for keeping your password confidential and for all activity on your account. Accounts intended for users under 13 are not allowed.</p>
+      </section>
+      <section>
+        <h2>7. Account suspension or termination</h2>
+        <p>We may suspend or terminate accounts that violate these Terms. You may also delete your own account at any time in Settings → Delete account.</p>
+      </section>
+      <section>
+        <h2>8. Changes to these Terms</h2>
+        <p>We may update these Terms periodically. Significant changes will be communicated within the app.</p>
+      </section>
+      <section>
+        <h2>9. Governing law</h2>
+        <p>These Terms are governed by the laws of the Federative Republic of Brazil.</p>
+      </section>
+    </div>
+  </main>
+  <footer>SceneOwl</footer>
+  <script>
+    var buttons = document.querySelectorAll('[data-lang-btn]');
+    var contents = document.querySelectorAll('[data-lang-content]');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var lang = btn.getAttribute('data-lang-btn');
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+        contents.forEach(function (c) {
+          var match = c.getAttribute('data-lang-content') === lang;
+          if (match) { c.removeAttribute('hidden'); } else { c.setAttribute('hidden', ''); }
+        });
+        document.documentElement.lang = lang;
+      });
+    });
+  </script>
+</body>
+</html>
