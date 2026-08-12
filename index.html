@@ -38,6 +38,24 @@
   <meta property="og:url" content="https://snpassos.github.io/sceneowl/">
   <meta name="twitter:title" content="SceneOwl">
   <meta name="twitter:description" content="SceneOwl is your personal catalog for movies and TV shows: build a watchlist, rate titles, track episode-by-episode progress, and see what your friends are watching.">
+  <script>
+  (function () {
+    try {
+      var KEY = 'sceneowl_dc_reload_once';
+      if (sessionStorage.getItem(KEY)) return;
+      setTimeout(function () {
+        var text = (document.body && document.body.innerText || '');
+        if (text.indexOf('{{ t.') !== -1) {
+          sessionStorage.setItem(KEY, '1');
+          location.reload();
+        }
+      }, 12000);
+    } catch (e) {
+      // sessionStorage bloqueado (modo privado estrito etc.) — melhor nao
+      // arriscar reload em loop do que insistir sem conseguir marcar a tentativa.
+    }
+  })();
+  </script>
 </head>
 <body>
   <div id="__bundler_brand" style="position:fixed;top:16px;left:20px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-weight:800;font-size:19px;color:#F5F6F8;letter-spacing:-0.3px;">

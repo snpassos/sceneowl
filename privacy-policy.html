@@ -36,6 +36,24 @@
   <meta property="og:url" content="https://snpassos.github.io/sceneowl/privacy-policy.html">
   <meta name="twitter:title" content="SceneOwl — Privacy Policy">
   <meta name="twitter:description" content="How SceneOwl collects, uses, and protects your data.">
+  <script>
+  (function () {
+    try {
+      var KEY = 'sceneowl_dc_reload_once';
+      if (sessionStorage.getItem(KEY)) return;
+      setTimeout(function () {
+        var text = (document.body && document.body.innerText || '');
+        if (text.indexOf('{{ t.') !== -1) {
+          sessionStorage.setItem(KEY, '1');
+          location.reload();
+        }
+      }, 12000);
+    } catch (e) {
+      // sessionStorage bloqueado (modo privado estrito etc.) — melhor nao
+      // arriscar reload em loop do que insistir sem conseguir marcar a tentativa.
+    }
+  })();
+  </script>
 </head>
 <body>
   <div id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" sc-camel-view-box="0 0 120 56"><rect width="120" height="56" fill="#0D0F14"></rect><circle cx="60" cy="28" r="16" fill="#6D4AFF"></circle><text x="60" y="33" font-size="14" fill="#F5F6F8" text-anchor="middle" font-family="sans-serif">SO</text></svg></div>

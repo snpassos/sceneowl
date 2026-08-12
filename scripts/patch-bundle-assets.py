@@ -126,6 +126,79 @@ def patch_head(name, text):
     return text[:end] + block + text[end:]
 
 
+# Watchdog defensivo: relatado um caso real (Firefox, so na primeira visita,
+# nao reproduzido depois) onde imagens e CSS carregaram mas nenhum texto
+# apareceu ate o usuario recarregar manualmente. Investigacao (comparação de
+# hash entre o manifest antes/depois deste patch) confirmou que os blobs do
+# runtime/React/ReactDOM sao byte-identicos a versao anterior a qualquer
+# mudanca desta sessao — nao e regressao deste script.
+#
+# Causa reproduzida deliberadamente (Chromium com DecompressionStream
+# removido via init script, pra simular a API ausente/falhando): o loader
+# gerado pela ferramenta (nao editavel por nos, marcado "GENERATED... do not
+# edit") so descomprime os blobs do runtime/React/ReactDOM (gzip) se
+# `DecompressionStream` existir; se nao existir OU a descompressao falhar por
+# qualquer motivo transitorio, cai num console.warn/catch SEM fallback,
+# entao esses tres scripts nunca executam de verdade — mas o resto do
+# unpack (que so faz atob() em base64, sem depender de DecompressionStream)
+# segue normal. Como o corpo da pagina inteiro e template ({{ t.chave }}),
+# sem o runtime pra resolver esses tokens o body.innerText fica cheio de
+# placeholders literais tipo "{{ t.heroTitle }}" em vez de texto de verdade
+# — NAO fica vazio, entao um limiar por tamanho de texto nunca dispararia;
+# o sinal certo e a presenca do padrao "{{ t." ainda visivel no corpo.
+WATCHDOG_MARKER = 'sceneowl_dc_reload_once'
+WATCHDOG_SCRIPT = f"""  <script>
+  (function () {{
+    try {{
+      var KEY = '{WATCHDOG_MARKER}';
+      if (sessionStorage.getItem(KEY)) return;
+      setTimeout(function () {{
+        var text = (document.body && document.body.innerText || '');
+        if (text.indexOf('{{{{ t.') !== -1) {{
+          sessionStorage.setItem(KEY, '1');
+          location.reload();
+        }}
+      }}, 12000);
+    }} catch (e) {{
+      // sessionStorage bloqueado (modo privado estrito etc.) — melhor nao
+      // arriscar reload em loop do que insistir sem conseguir marcar a tentativa.
+    }}
+  }})();
+  </script>
+"""
+
+
+WATCHDOG_BLOCK_RE = re.compile(
+    r'  <script>\n  \(function \(\) \{.*?' + re.escape(WATCHDOG_MARKER) + r'.*?\n  </script>\n',
+    re.S,
+)
+
+
+def patch_watchdog(name, text):
+    """Injeta (ou atualiza) o watchdog de reload no <head> estatico.
+
+    Substitui pelo conteudo atual em vez de so pular quando o marcador ja
+    existe: assim uma correcao na logica do watchdog se propaga ao rodar de
+    novo, igual ao find_targets() comparando bytes em vez de so presenca.
+    """
+    end = static_head_end(text)
+    head = text[:end]
+
+    if WATCHDOG_MARKER not in head:
+        print(f'  {name}: watchdog de reload adicionado')
+        return text[:end] + WATCHDOG_SCRIPT + text[end:]
+
+    if WATCHDOG_BLOCK_RE.search(head).group(0) == WATCHDOG_SCRIPT:
+        print(f'  {name}: watchdog ja atualizado, pulando')
+        return text
+
+    print(f'  {name}: watchdog de reload atualizado')
+    new_head, n = WATCHDOG_BLOCK_RE.subn(WATCHDOG_SCRIPT, head, count=1)
+    if n != 1:
+        raise SystemExit(f'{name}: watchdog antigo nao casou com o padrao esperado pra substituicao')
+    return new_head + text[end:]
+
+
 # Cada entrada do manifest tem a forma
 #   "<uuid>":{"mime":"image/png","compressed":false,"data":"<base64>"}
 # A troca e cirurgia de string ancorada no uuid, nao re-serializacao do JSON:
@@ -247,6 +320,7 @@ def main():
         keys_before = set(json.loads(MANIFEST_RE.search(text).group(2)))
 
         text = patch_head(name, text)
+        text = patch_watchdog(name, text)
         text = patch_assets(name, text)
         verify(name, text, template_before, keys_before)
 
