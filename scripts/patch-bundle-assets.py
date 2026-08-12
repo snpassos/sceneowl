@@ -13,7 +13,6 @@ Uso: python scripts/patch-bundle-assets.py
 import base64
 import json
 import re
-import struct
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -149,23 +148,24 @@ LOGO_ALT = 'SceneOwl'
 LOGO_FILE = ('assets/logo-96.png', 'image/png')
 
 
-def png_size(raw):
-    if raw[:8] != b'\x89PNG\r\n\x1a\n':
-        return None
-    return struct.unpack('>II', raw[16:24])
-
-
 def find_targets(manifest, template_html):
-    """Descobre uuid -> (arquivo novo, mime novo) pelo alt no template."""
+    """Descobre uuid -> (arquivo novo, mime novo) pelo alt no template.
+
+    Compara bytes atuais do manifest contra o arquivo-fonte (nao um check de
+    tamanho fixo): idempotente por natureza — se ja bate, sai sozinho da
+    lista — e continua funcionando se o arquivo-fonte for atualizado de novo
+    no futuro (ex.: correcao de um asset ja trocado antes).
+    """
     targets = {}
     for uuid, alt in re.findall(r'<img[^>]*src="([0-9a-f-]{36})"[^>]*alt="([^"]*)"', template_html):
-        if alt in SCREEN_BY_ALT:
-            targets[uuid] = SCREEN_BY_ALT[alt]
-        elif alt == LOGO_ALT:
-            # So o logo mestre: 917x958. Se ja foi trocado, e 96x96 e sai fora.
-            raw = base64.b64decode(manifest[uuid]['data'])
-            if png_size(raw) == (917, 958):
-                targets[uuid] = LOGO_FILE
+        candidate = SCREEN_BY_ALT.get(alt) or (LOGO_FILE if alt == LOGO_ALT else None)
+        if candidate is None:
+            continue
+        rel_path, mime = candidate
+        new_bytes = (ROOT / rel_path).read_bytes()
+        current_bytes = base64.b64decode(manifest[uuid]['data'])
+        if current_bytes != new_bytes:
+            targets[uuid] = candidate
     return targets
 
 
