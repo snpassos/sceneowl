@@ -215,7 +215,9 @@
     function applySavedLang() {
       try {
         var saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) applyLang(saved);
+        // A landing grava "en"/"pt"; estas paginas usam "en-US"/"pt-BR".
+        // Normalizar na leitura pra escolha de idioma valer nas duas metades.
+        if (saved) applyLang(String(saved).indexOf('pt') === 0 ? 'pt-BR' : 'en-US');
       } catch (e) {}
     }
     buttons.forEach(function (btn) {
