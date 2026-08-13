@@ -54,8 +54,7 @@
     letter-spacing: -0.5px;
     margin: 0 0 14px;
   }
-  .wordmark .scene { color: var(--fg); }
-  .wordmark .owl { color: var(--primary); }
+  h1.wordmark { color: var(--fg); }
   p {
     color: var(--muted);
     font-size: 15px;
@@ -107,7 +106,13 @@
 <body>
   <div class="wrap">
     <img class="logo" src="./logo.png" alt="SceneOwl" width="230" height="240" />
-    <h1 class="wordmark"><span class="scene">Scene</span><span class="owl">Owl</span></h1>
+    <!--
+      Manter o nome do app como UM unico no de texto, sem dividir em elementos
+      coloridos. Dividido, qualquer extrator que insere espaco entre tags lia o
+      nome quebrado ao meio, o que nao corresponde ao nome configurado na tela
+      de consentimento OAuth e reprovava a verificacao de Branding.
+    -->
+    <h1 class="wordmark">SceneOwl</h1>
 
     <div class="lang-toggle" role="group" aria-label="Idioma / Language">
       <button type="button" data-lang-btn="pt-BR" aria-pressed="true">Português</button>
