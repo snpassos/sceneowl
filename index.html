@@ -53,6 +53,32 @@
     }
   })();
   </script>
+  <script>
+  // Rede de seguranca: se o runtime da pagina falhar em resolver os templates
+  // (ver watchdog acima), mostra o conteudo real em vez dos placeholders crus.
+  // Roda em 1.2s porque crawler/verificador nao espera os 12s do watchdog.
+  (function () {
+    var HTML = '<div id="__sceneowl_fallback" style="position:absolute;top:0;left:0;right:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px;background:#0D0F14;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#F5F6F8;">'
+      + '<h1 style="font-size:34px;font-weight:800;letter-spacing:-0.5px;margin:0 0 10px;">SceneOwl</h1>'
+      + '<p style="color:#9AA0AC;font-size:15px;margin:0 0 20px;">Every scene. Remembered. &middot; Cada cena. Lembrada.</p>'
+      + '<p style="color:#C4C9D2;font-size:16px;line-height:1.6;max-width:560px;margin:0 0 10px;">SceneOwl is an app for tracking the movies and TV shows you watch: build a watchlist, rate and comment on titles, track episode-by-episode progress, and follow what your friends are watching.</p>'
+      + '<p style="color:#C4C9D2;font-size:16px;line-height:1.6;max-width:560px;margin:0 0 24px;">O SceneOwl &eacute; um app para acompanhar os filmes e s&eacute;ries que voc&ecirc; assiste: monte sua watchlist, avalie e comente t&iacute;tulos, acompanhe seu progresso epis&oacute;dio a epis&oacute;dio e siga o que seus amigos est&atilde;o assistindo.</p>'
+      + '<p style="margin:0;font-size:14px;"><a href="https://sceneowl.com/privacy-policy.html" style="color:#6D4AFF;">Privacy Policy / Pol&iacute;tica de Privacidade</a>&nbsp;&middot;&nbsp;<a href="https://sceneowl.com/terms-of-service.html" style="color:#6D4AFF;">Terms of Use / Termos de Uso</a></p>'
+      + '</div>';
+    function check() {
+      try {
+        var body = document.body;
+        if (!body) return;
+        if (document.getElementById('__sceneowl_fallback')) return;
+        if ((body.innerText || '').indexOf('{{ t.') === -1) return;
+        // Runtime falhou: troca os placeholders pelo conteudo real.
+        body.innerHTML = HTML;
+      } catch (e) {}
+    }
+    setTimeout(check, 1200);
+    setTimeout(check, 4000);
+  })();
+  </script>
 </head>
 <body>
   <div id="__bundler_brand" style="position:absolute;top:0;left:0;right:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#F5F6F8;">
