@@ -1,0 +1,12 @@
+# Este repo e byte-sensivel: index.html e uma "Bundled Page" de ~1 MB cujo
+# conteudo real vive dentro de JSON embutido, e scripts/patch-bundle-assets.py
+# faz cirurgia de string ancorada em marcadores que incluem \n literais.
+#
+# Com core.autocrlf=true (padrao em muitas maquinas Windows), um `git checkout`
+# reescreve TODA quebra de linha para CRLF. Efeito ja observado na pratica: os
+# regex do patch script deixam de casar e ele aborta, e qualquer commit depois
+# disso vira um diff do arquivo inteiro em vez das poucas linhas do head.
+#
+# `-text` desliga qualquer normalizacao de fim de linha, independente da config
+# local da maquina. Nao trocar por `text=auto`.
+* -text
